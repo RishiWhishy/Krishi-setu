@@ -66,6 +66,7 @@ body {
   max-width: 400px;
   text-align: center;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075); /* Subtle shadow for depth */
+  display: none;
 }
 
 /* Form group styling */
@@ -122,4 +123,34 @@ body {
   font-weight: bold;
   color: #d07814;
   padding: 20px;
+}
+.container1{
+  margin-top: 15px;
+  display: grid; /* Enables grid layout */
+  place-items: center; /* Centers both horizontally and vertically */
+  background-color: #FFFBE6;
+  padding:40px;
+  border-radius: 15px;
+  width: 90%; /* Responsive width */
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075); /* Subtle shadow for depth */
+  animation-name: arnav1;
+  
+}
+.Sign-in-button2{
+  padding: 10px 20px;
+  background: #00712D;
+  color: #FFFBE6;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 7px;
+}
+@keyframes arnav1 {
+  from{
+    display: grid;
+  }
+  
 }
