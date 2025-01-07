@@ -1,0 +1,80 @@
+/* Body with background image */
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    /* background: url('background.jpg') no-repeat center center fixed; */
+    background-color:#eeffc8;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Transparent overlay container */
+.overlay {
+    background-color: #FFFBE6;
+    backdrop-filter: blur(10px); /* Blur effect */
+    padding:30px;
+    border-radius: 15px;
+    width: 90%; /* Responsive width */
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.Krishi {
+    font-size: 66px;
+    color: #ff9100;
+    margin: 0;
+    font-family: "Corinthia",cursive;
+}
+
+.Setu {
+    font-size: 46px;
+    color: #00712D;
+    margin: 0;
+    font-family: "Galada",cursive;
+    font-weight: 200;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 40px;
+    font-weight: bold; /* Optional: Makes the text bolder */
+    background: linear-gradient(90deg, rgba(255,145,0,1) 40%, rgba(0,113,45,1) 82%);    -webkit-background-clip: text; /* Clips the background to the text */
+    color: transparent; /* Makes the text color transparent so the gradient shows */
+    margin-bottom: 30px;
+}
+
+/* Basic Button Styles */
+button {
+    font-family: "Poppins", sans-serif;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #FFFBE6;
+    background-color: #00712D;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    display: block; /* Make the button block-level */
+    margin: 10px auto; /* Space between buttons */
+    width: 200px; /* Set a fixed width for all buttons */
+}
+
+/* Hover Effect */
+button:hover {
+    background-color: #00913a;
+}
+
+/* Active State */
+button:active {
+    transform: translateY(-1px);
+}

@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #eeffc8;
+    color: #4a4a4a;
+  }
+  .logo{
+    
+  }
+  .Krishi {
+    font-size: 66px;
+    color: #ff9100;
+    margin: 0;
+    font-family: "Corinthia",cursive;
+  }
+  
+  .Setu {
+    font-size: 46px;
+    color: #00712D;
+    margin: 0;
+    font-family: "Galada",cursive;
+    font-weight: 200;
+  }
+  
+  .container {
+  
+    width: 100%;
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 10px;
+    box-shadow: 10px 8px 10px rgba(144, 148, 92, 0.541);
+    border-radius: 20px;
+    background-color: #FFFBE6;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .menu-icon span {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  main {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    margin-bottom: 20px;
+  }
+  
+  .search-box input {
+    width: 90%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .crop-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .crop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .crop-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .crop-item span {
+    font-size: 14px;
+    font-weight: bold;
+  }
