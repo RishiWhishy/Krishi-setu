@@ -58,6 +58,9 @@ app.listen(PORT, () => {
 
 
 
+const jwt = require('jsonwebtoken');
+const secretKey = 'your_secret_key'; // Use a strong secret key
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -66,11 +69,9 @@ app.post('/login', async (req, res) => {
   }
 
   try {
-    // Check if user exists
     const sql = 'SELECT * FROM users WHERE username = ?';
     db.query(sql, [username], async (err, results) => {
       if (err) {
-        console.error('Database error:', err);
         return res.status(500).json({ error: 'Database error' });
       }
 
@@ -78,7 +79,6 @@ app.post('/login', async (req, res) => {
         return res.status(401).json({ error: 'Invalid username or password' });
       }
 
-      // Compare entered password with stored hashed password
       const user = results[0];
       const isMatch = await bcrypt.compare(password, user.password);
 
@@ -86,10 +86,14 @@ app.post('/login', async (req, res) => {
         return res.status(401).json({ error: 'Invalid username or password' });
       }
 
-      res.status(200).json({ message: 'Login successful' });
+      // Generate JWT Token
+      const token = jwt.sign({ username: user.username }, secretKey, { expiresIn: '1h' });
+
+      res.status(200).json({ message: 'Login successful', token });
     });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 

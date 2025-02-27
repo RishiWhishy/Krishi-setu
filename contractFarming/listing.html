@@ -28,7 +28,7 @@
         <span>☰</span>
       </div>
       <div class="profile">
-        <span>SURESH S.</span>
+        <span id="username"></span>
       </div>
     </header>
 
@@ -66,5 +66,19 @@
       </div>
     </main>
   </div>
+  <script>
+    function getUsername() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = "farmer_LoginPage.html"; // Redirect if not logged in
+            return;
+        }
+
+        const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT
+        document.getElementById('username').innerText = payload.username;
+    }
+
+    getUsername();
+</script>
 </body>
 </html>
