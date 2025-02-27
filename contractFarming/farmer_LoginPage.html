@@ -27,21 +27,33 @@
   
   <div class="container" id="container2">
     <p class="Sign-in">Sign in</p>
-    <div class="form__group">
-      <input type="text" id="phone" class="form__field" placeholder="Username,Phone Number or Aadhaar Number" required>
-    </div>
-    <div class="form__group">
+    <form id="loginForm" class="form__group">
+      <input type="text" id="username" class="form__field" placeholder="Username,Phone Number or Aadhaar Number" required>
+      <br>
       <input type="password" id="password" class="form__field" placeholder="password" required>
-    </div>
-    <button class="Sign-in-button" type="submit">Sign-in as Farmer</button>
-    <p class="or-text">OR</p>
-
-    <button class="otp-button">Get OTP</button>
-    <i class="fa-brands fa-google"></i>
+      <button class="Sign-in-button" type="submit"><a href="listing.html">Sign-in as Farmer</a></button>
+    </form>
+    
 
 
   </div>
-  
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+        alert(data.message || data.error);
+    });
+</script>
   
   
 </body>
