@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Poppins, sans-serif;
   background-color: #eeffc8;
   color: #4a4a4a;
 }
@@ -85,32 +85,43 @@ p {
 
 .crop-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
   gap: 15px;
-}
-
-.crop-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
   text-align: center;
 }
 
-.crop-item img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
+.crop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer; /* Makes it clear that it's clickable */
 }
 
-.crop-item span {
+.crop-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.2s;
+}
+
+.crop-item:hover {
+  transform: scale(1.05); /* Slight zoom effect when hovering */
+}
+
+
+.crop-name {
+  margin-top: 5px;
   font-size: 14px;
   font-weight: bold;
+  text-align: center;
 }
+
+
+
 
 .header {
   display: flex;
