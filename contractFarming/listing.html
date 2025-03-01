@@ -23,48 +23,45 @@
     </h1>
   </div>
   <div class="container">
-    <header>
-      <div class="menu-icon">
-        <span>☰</span>
-      </div>
-      <div class="profile">
-        <span id="username"></span>
-      </div>
-    </header>
-
     <main>
-      <h1>Hello Suresh!</h1>
+      <h1>Hello, <span id="username"></span></h1>
       <p>What would you like to sell?</p>
-      <div class="search-box">
-        <input type="text" placeholder="Search Crops">
-      </div>
+      
       <div class="crop-list">
-        <div class="crop-item" style="background-color: #ffcccc;">
-          <img src="tomato.png" alt="Tomatoes">
-          <span>TOMATOES</span>
+        <div class="crop-container" onclick="redirectToYieldPage('Tomatoes')">
+            <div class="crop-item" style="background-image: url('tomato.png');"></div>
+            <span class="crop-name">TOMATOES</span>
         </div>
-        <div class="crop-item" style="background-color: #d9b38c;">
-          <img src="potato.png" alt="Potatoes">
-          <span>POTATOES</span>
+    
+        <div class="crop-container" onclick="redirectToYieldPage('Potatoes')">
+            <div class="crop-item" style="background-image: url('Potatoes.jpg');"></div>
+            <span class="crop-name">POTATOES</span>
         </div>
-        <div class="crop-item" style="background-color: #d9b3d9;">
-          <img src="onion.png" alt="Onions">
-          <span>ONIONS</span>
+    
+        <div class="crop-container" onclick="redirectToYieldPage('Onions')">
+            <div class="crop-item" style="background-image: url('onions.jpg');"></div>
+            <span class="crop-name">ONIONS</span>
         </div>
-        <div class="crop-item" style="background-color: #ffffb3;">
-          <img src="corn.png" alt="Corn">
-          <span>CORN</span>
+    
+        <div class="crop-container" onclick="redirectToYieldPage('Corn')">
+            <div class="crop-item" style="background-image: url('sweet corn.jpg');"></div>
+            <span class="crop-name">CORN</span>
         </div>
-        <div class="crop-item" style="background-color: #b3ffb3;">
-          <img src="capsicum.png" alt="Capsicum">
-          <span>CAPSICUM</span>
+    
+        <div class="crop-container" onclick="redirectToYieldPage('Capsicum')">
+            <div class="crop-item" style="background-image: url('capsicums.jpg');"></div>
+            <span class="crop-name">CAPSICUM</span>
         </div>
-        <div class="crop-item" style="background-color: #d1b3ff;">
-          <img src="eggplant.png" alt="Eggplant">
-          <span>EGGPLANT</span>
+    
+        <div class="crop-container" onclick="redirectToYieldPage('Eggplant')">
+            <div class="crop-item" style="background-image: url('eggplant.jpg');"></div>
+            <span class="crop-name">EGGPLANT</span>
         </div>
-      </div>
-    </main>
+    </div>
+    
+    
+    </div>
+</main>
   </div>
   <script>
     function getUsername() {
@@ -78,6 +75,18 @@
         document.getElementById('username').innerText = payload.username;
     }
 
+    function redirectToYieldPage(cropName) {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = "farmer_LoginPage.html"; // Redirect if not logged in
+            return;
+        }
+
+        const payload = JSON.parse(atob(token.split('.')[1])); // Decode JWT
+        const username = encodeURIComponent(payload.username);
+
+        window.location.href = `yield_page.html?crop=${encodeURIComponent(cropName)}&user=${username}`;
+    }
     getUsername();
 </script>
 </body>
