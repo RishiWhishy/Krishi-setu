@@ -1,0 +1,168 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eeffc8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  padding: 15px;
+  background-color:#FFFBE6 ;
+  border-radius: 20px;
+  margin-top: 75px;
+  padding-bottom: 40px;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Greeting */
+.greeting {
+  background-color: #dfc08c;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.filter-btn {
+  background-color: #c99c5d;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filter-btn i {
+  margin-right: 5px;
+}
+
+/* Farmer List */
+.farmer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.farmer-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.farmer-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.details h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.details p {
+  margin: 0;
+  font-size: 12px;
+  color: gray;
+}
+
+.details span {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Selected Card */
+.selected {
+  background-color: #d3d3d3;
+}
+
+/* Proceed Button */
+.proceed-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #166d3b;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.Krishi {
+  font-size: 34px;
+  font-weight: bold;
+  color: #ff9100;
+  font-family: "Corinthia", cursive;
+  margin: 0;
+}
+
+.Setu {
+  color: #00712D;
+  font-family: "Galada", cursive;
+}
