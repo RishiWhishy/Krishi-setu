@@ -7,7 +7,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  background-color:#eeffc8; 
+  background-color: #eeffc8;
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -16,18 +16,19 @@ body {
   align-items: center;
   height: 100vh;
 }
+
 /* Header container styling */
 .header {
   display: flex;
-  align-items: center; /* Align logo and text vertically */
-  gap: 10px; /* Space between logo and text */
-  position: absolute; /* Position at the top-left */
+  align-items: center;
+  gap: 10px;
+  position: absolute;
   top: 10px;
   left: 10px;
 }
 
 .logo {
-  width: 60px; /* Adjust size */
+  width: 60px;
   height: 60px;
 }
 
@@ -35,38 +36,61 @@ body {
   font-size: 34px;
   font-weight: bold;
   color: #ff9100;
-  font-family: "Corinthia",cursive;
-  margin: 0; /* Remove default margin */
+  font-family: "Corinthia", cursive;
+  margin: 0;
 }
 
 .Setu {
-  color: #00712D; /* Green color for 'Setu' */
-  font-family: "Galada",cursive;
+  color: #00712D;
+  font-family: "Galada", cursive;
 }
 
-.Sign-in{
+.Sign-in {
   margin-top: 0px;
   font-size: 40px;
-  font-weight: bold; /* Optional: Makes the text bolder */
-  background: linear-gradient(90deg, rgba(255,145,0,1) 40%, rgba(0,113,45,1) 82%);
-  -webkit-background-clip: text; /* Clips the background to the text */
-  color: transparent; /* Makes the text color transparent so the gradient shows */
+  font-weight: bold;
+  background: linear-gradient(90deg, rgba(255,145,0,1) 10%, rgba(0,113,45,1) 52%);
+  -webkit-background-clip: text;
+  color: transparent;
   margin-bottom: 30px;
 }
 
-/* Center the container */
+/* Updated container styling for flex layout */
 .container {
-  margin-top: 15px;
-  display: grid; /* Enables grid layout */
-  place-items: center; /* Centers both horizontally and vertically */
-  background-color: #FFFBE6;
-  padding:40px;
+  display: flex; /* Enable flexbox */
+  flex-direction: row; /* Align image and form side by side */
+  align-items: center; /* Align vertically */
+  justify-content: space-between; /* Space between elements */
+  background-color: #fff6ed;
+  padding: 20px;
   border-radius: 15px;
-  width: 90%; /* Responsive width */
-  max-width: 400px;
+  width: 90%;
+  max-width: 600px; /* Increased to fit both image and form */
   text-align: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075); /* Subtle shadow for depth */
-  
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075);
+}
+
+
+/* Styling for the image container */
+.image-container {
+  flex: 1;
+}
+
+.login-image {
+  width: 250px; /* Set desired width */
+  height: 250px; /* Set desired height */
+  object-fit: cover; /* Ensure the image fills the area */
+  border-radius: 10px;
+}
+
+
+
+/* Styling for the form container */
+.form-container {
+  width: 50%; /* Form takes remaining space */
+  text-align: left;
+  padding: 40px;
+  margin: 0 auto;
 }
 
 /* Form group styling */
@@ -75,7 +99,7 @@ body {
   margin-bottom: 5px;
   display: flex;
   flex-direction: column;
-  width: 250px; /* Adjust input width */
+  width: 250px;
 }
 
 .form__field {
@@ -88,9 +112,39 @@ body {
   font-size: 10px;
   color: black;
   padding: 10px;
-  background:#f3f3f352;
+  background: #f3f3f352;
 }
 
+/* Remove default browser eye icon for password field */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none;
+}
+
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+}
+
+.password-container i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #00712D;
+}
+
+input.form__field {
+  width: 100%;
+  box-sizing: border-box;
+}
 .Sign-in-button {
   padding: 10px 20px;
   background: #00712D;
@@ -102,7 +156,7 @@ body {
   margin-top: 20px;
 }
 
-.otp-button{
+.otp-button {
   color: #00712D;
   background: none;
   text-decoration: underline;
@@ -124,21 +178,22 @@ body {
   color: #d07814;
   padding: 20px;
 }
-.container1{
+
+.container1 {
   margin-top: 15px;
-  display: grid; /* Enables grid layout */
-  place-items: center; /* Centers both horizontally and vertically */
+  display: grid;
+  place-items: center;
   background-color: #FFFBE6;
-  padding:40px;
+  padding: 40px;
   border-radius: 15px;
-  width: 90%; /* Responsive width */
+  width: 90%;
   max-width: 400px;
   text-align: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075); /* Subtle shadow for depth */
-  margin:auto;
-  
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075);
+  margin: auto;
 }
-.Sign-in-button2{
+
+.Sign-in-button2 {
   padding: 10px 20px;
   background: #00712D;
   color: #FFFBE6;
@@ -148,22 +203,153 @@ body {
   cursor: pointer;
   margin-top: 7px;
 }
-.container1 .Sign-in-button a{
-  text-decoration: none;
-  color: #FFFBE6;
-}
-.container1 .Sign-in-button2 a{
-  text-decoration: none;
-  color: #FFFBE6;
-}
-a{
+
+.container1 .Sign-in-button a {
   text-decoration: none;
   color: #FFFBE6;
 }
 
+.container1 .Sign-in-button2 a {
+  text-decoration: none;
+  color: #FFFBE6;
+}
 
+a {
+  text-decoration: none;
+  color: #FFFBE6;
+}
 
+/* From Uiverse.io by fanishah */ 
+.loader {
+  width: 8em;
+  height: 8em;
+}
 
+.loader__eye1,
+  .loader__eye2,
+  .loader__mouth1,
+  .loader__mouth2 {
+  animation: eye1 3s ease-in-out infinite;
+}
 
+.loader__eye1,
+  .loader__eye2 {
+  transform-origin: 64px 64px;
+}
 
+.loader__eye2 {
+  animation-name: eye2;
+}
+
+.loader__mouth1 {
+  animation-name: mouth1;
+}
+
+.loader__mouth2 {
+  animation-name: mouth2;
+  visibility: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: hsl(var(--hue), 90%, 10%); 
+    --fg: hsl(var(--hue), 90%, 90%); 
+  }
+}
+
+@keyframes eye1 {
+  from {
+    transform: rotate(-260deg) translate(0, -56px);
+  }
+
+  50%,
+    60% {
+    animation-timing-function: cubic-bezier(0.17, 0, 0.58, 1);
+    transform: rotate(-40deg) translate(0, -56px) scale(1);
+  }
+
+  to {
+    transform: rotate(225deg) translate(0, -56px) scale(0.35);
+  }
+}
+
+@keyframes eye2 {
+  from {
+    transform: rotate(-260deg) translate(0, -56px);
+  }
+
+  50% {
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+  }
+
+  52.5% {
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1, 0);
+  }
+
+  55%,
+    70% {
+    animation-timing-function: cubic-bezier(0, 0, 0.28, 1);
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+  }
+
+  to {
+    transform: rotate(150deg) translate(0, -56px) scale(0.4);
+  }
+}
+
+@keyframes eyeBlink {
+  from,
+    25%,
+    75%,
+    to {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes mouth1 {
+  from {
+    animation-timing-function: ease-in;
+    stroke-dasharray: 0 351.86;
+    stroke-dashoffset: 0;
+  }
+
+  25% {
+    animation-timing-function: ease-out;
+    stroke-dasharray: 175.93 351.86;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    animation-timing-function: steps(1, start);
+    stroke-dasharray: 175.93 351.86;
+    stroke-dashoffset: -175.93;
+    visibility: visible;
+  }
+
+  75%,
+    to {
+    visibility: hidden;
+  }
+}
+
+@keyframes mouth2 {
+  from {
+    animation-timing-function: steps(1, end);
+    visibility: hidden;
+  }
+
+  50% {
+    animation-timing-function: ease-in-out;
+    visibility: visible;
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -351.86;
+  }
+}
 
