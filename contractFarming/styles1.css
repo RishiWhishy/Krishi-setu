@@ -28,7 +28,7 @@ body {
   max-width: 400px;
   margin: 150px auto;
   padding: 10px;
-  box-shadow: 10px 8px 10px rgba(144, 148, 92, 0.541);
+  box-shadow: 2px 2px 2px rgba(144, 148, 92, 0.12);
   border-radius: 20px;
   background-color: #FFFBE6;
 }

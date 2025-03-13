@@ -3,9 +3,11 @@ const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = 5000;
+const secretKey = 'your_secret_key'; // Use a strong secret key
 
 // Middleware
 app.use(cors());
@@ -50,17 +52,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
-
-
-
-const jwt = require('jsonwebtoken');
-const secretKey = 'your_secret_key'; // Use a strong secret key
-
+// API Endpoint to Login User
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -95,3 +87,5 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+
