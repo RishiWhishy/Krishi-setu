@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'dps123',
+  password: 'Rishi@2005',
   database: 'sgt'
 });
 
@@ -95,5 +95,3 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-
-
