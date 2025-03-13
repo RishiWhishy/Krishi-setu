@@ -1,52 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rating System</title>
-  <link rel="stylesheet" href="rating_after_listing1.css">
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/57a5ab8d5e.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <div class="header">
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1 class="Krishi">
-      Krishi<span class="Setu">Setu</span>
-    </h1>
-  </div>
-    <div class="rating-container">
-        <h2>Thank you for listing Your Product!!<br><br>Rate Us</h2>
-        <div class="stars" id="stars">
-            <span data-value="1">★</span>
-            <span data-value="2">★</span>
-            <span data-value="3">★</span>
-            <span data-value="4">★</span>
-            <span data-value="5">★</span>
-        </div>
-        <br>
-        <div class="rating-text" id="rating-text">Your rating: 0</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rating System</title>
+    <link rel="stylesheet" href="rating_after_listing1.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Galada&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/57a5ab8d5e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="header">
+      <img src="logo.png" alt="Logo" class="logo" />
+      <h1 class="Krishi">Krishi<span class="Setu">Setu</span></h1>
     </div>
-    
+    <div class="rating-container">
+      <h2>Thank you for listing Your Product!!<br /><br />Rate Us</h2>
+      <div class="stars" id="stars">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+      </div>
+      <br />
+      <div class="rating-text" id="rating-text">Your rating: 0</div>
+    </div>
+
     <script>
-        const stars = document.querySelectorAll('.stars span');
-        const ratingText = document.getElementById('rating-text');
-        
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                let rating = star.getAttribute('data-value');
-                ratingText.textContent = `Your rating: ${rating}`;
-                stars.forEach(s => s.classList.remove('active'));
-                star.classList.add('active');
-            });
+      const stars = document.querySelectorAll(".stars span");
+      const ratingText = document.getElementById("rating-text");
+
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          let rating = star.getAttribute("data-value");
+          ratingText.textContent = `Your rating: ${rating}`;
+
+          stars.forEach((s) => s.classList.remove("active"));
+          star.classList.add("active");
+
+          // Extract user and crop details from the URL
+          const params = new URLSearchParams(window.location.search);
+          const user = params.get("user");
+          const crop = params.get("crop");
+
+          // Send rating to the server
+          fetch("http://localhost:5000/submit-rating", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: user, cropName: crop, rating }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              alert(data.message); // Show confirmation
+
+              // Redirect back to index.html after 2 seconds
+              setTimeout(() => {
+                window.location.href = "index.html";
+              }, 2000);
+            })
+            .catch((error) => console.error("Error:", error));
         });
+      });
     </script>
-</body>
+  </body>
 </html>

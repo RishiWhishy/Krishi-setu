@@ -3,9 +3,11 @@ const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = 5000;
+const secretKey = 'your_secret_key'; // Use a strong secret key
 
 // Middleware
 app.use(cors());
@@ -50,17 +52,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
-
-
-
-const jwt = require('jsonwebtoken');
-const secretKey = 'your_secret_key'; // Use a strong secret key
-
+// API Endpoint to Login User
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -96,4 +88,44 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// API Endpoint to List a Crop for Sale
+app.post('/list-crop', (req, res) => {
+  const { username, cropName, yieldAmount, price } = req.body;
 
+  if (!username || !cropName || !yieldAmount || !price) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  const sql = 'INSERT INTO listings (username, crop_name, yield, price) VALUES (?, ?, ?, ?)';
+  db.query(sql, [username, cropName, yieldAmount, price], (err, result) => {
+    if (err) {
+      console.error('Error inserting crop listing:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.status(201).json({ message: 'Crop listed successfully' });
+  });
+});
+
+app.post('/submit-rating', (req, res) => {
+  const { username, cropName, rating } = req.body;
+
+  if (!username || !cropName || !rating) {
+      return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const sql = 'INSERT INTO ratings (username, cropName, rating) VALUES (?, ?, ?)';
+  db.query(sql, [username, cropName, rating], (err, result) => {
+      if (err) {
+          console.error('Error inserting rating:', err);
+          return res.status(500).json({ error: 'Database error' });
+      }
+      res.status(201).json({ message: 'Rating submitted successfully' });
+  });
+});
+
+
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
