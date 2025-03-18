@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmer</title>
+    <link rel="stylesheet" href="styles/farmer_page.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Galada&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/57a5ab8d5e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- Loader -->
+<div id="loader-container">
+  <svg height="108px" width="108px" viewBox="0 0 128 128" class="loader">
+    <defs>
+      <clipPath id="loader-eyes">
+        <circle transform="rotate(-40,64,64) translate(0,-56)" r="8" cy="64" cx="64" class="loader__eye1"></circle>
+        <circle transform="rotate(40,64,64) translate(0,-56)" r="8" cy="64" cx="64" class="loader__eye2"></circle>
+      </clipPath>
+      <linearGradient y2="1" x2="0" y1="0" x1="0" id="loader-grad">
+        <stop stop-color="#000" offset="0%"></stop>
+        <stop stop-color="#fff" offset="100%"></stop>
+      </linearGradient>
+      <mask id="loader-mask">
+        <rect fill="url(#loader-grad)" height="128" width="128" y="0" x="0"></rect>
+      </mask>
+    </defs>
+    <g stroke-dasharray="175.93 351.86" stroke-width="12" stroke-linecap="round">
+      <g>
+        <rect clip-path="url(#loader-eyes)" height="64" width="128" fill="hsl(144,100%,22.2%)"></rect>
+        <g stroke="hsl(144,100%,22.2%)" fill="none">
+          <circle transform="rotate(180,64,64)" r="56" cy="64" cx="64" class="loader__mouth1"></circle>
+          <circle transform="rotate(0,64,64)" r="56" cy="64" cx="64" class="loader__mouth2"></circle>
+        </g>
+      </g>
+      <g mask="url(#loader-mask)">
+        <rect clip-path="url(#loader-eyes)" height="64" width="128" fill="hsl(120,100%,40%)"></rect>
+        <g stroke="hsl(120,100%,40%)" fill="none">
+          <circle transform="rotate(180,64,64)" r="56" cy="64" cx="64" class="loader__mouth1"></circle>
+          <circle transform="rotate(0,64,64)" r="56" cy="64" cx="64" class="loader__mouth2"></circle>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- Main Content (Initially Hidden) -->
+<div id="content" style="display: none;">
+  <!-- Your existing login page content goes here -->
+  <div class="header">
+    <img src="images/logo.png" alt="Logo" class="logo" />
+    <h1 class="Krishi">Krishi<span class="Setu">Setu</span></h1>
+  </div>
+
+  <div class="container" id="container2">
+    <div class="image-container">
+      <img
+        src="farmer-using-technology-digital-agriculture/v921-audi-wit-013.jpg"
+        alt="Farmer"
+        class="login-image"
+      />
+    </div>
+    <div class="form-container">
+      <p class="Sign-in">Sign in</p>
+      <form id="loginForm" class="form__group">
+        <input
+          type="text"
+          id="username"
+          class="form__field"
+          placeholder="Username/phone number/Aadhaar number"
+          required
+        />
+        <br />
+        <div class="password-container">
+          <input
+            type="password"
+            id="password"
+            class="form__field"
+            placeholder="Password"
+            required
+          />
+          <i class="fa-solid fa-eye" id="togglePassword"></i>
+        </div>
+        <button class="Sign-in-button" type="submit">
+          <a href="listing.html">Sign-in as Farmer</a>
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Hide loader and show content when the page loads
+  window.onload = function () {
+    setTimeout(() => {
+      document.getElementById("loader-container").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    }, 1000); // Adjust time as needed
+  };
+
+  // Login form submission
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Show loader when submitting the form
+      document.getElementById("loader-container").style.display = "flex";
+      document.getElementById("content").style.display = "none";
+
+      try {
+        const response = await fetch("http://localhost:5000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+
+        if (data.token) {
+          localStorage.setItem("token", data.token); // Store token
+          window.location.href = "listing.html"; // Redirect to welcome page
+        } else {
+          alert(data.error);
+          // Hide loader if login fails
+          document.getElementById("loader-container").style.display = "none";
+          document.getElementById("content").style.display = "block";
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        alert("An error occurred. Please try again.");
+        document.getElementById("loader-container").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      }
+    });
+
+  // Password visibility toggle
+  document.getElementById("togglePassword").addEventListener("click", function () {
+    const passwordField = document.getElementById("password");
+    this.classList.toggle("fa-eye-slash");
+    this.classList.toggle("fa-eye");
+    passwordField.type = passwordField.type === "password" ? "text" : "password";
+  });
+</script>
+
+  </body>
+</html>

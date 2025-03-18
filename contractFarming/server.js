@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
 const app = express();
 const PORT = 5000;
@@ -12,6 +13,7 @@ const secretKey = 'your_secret_key'; // Use a strong secret key
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // MySQL Connection
 const db = mysql.createConnection({
@@ -88,4 +90,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

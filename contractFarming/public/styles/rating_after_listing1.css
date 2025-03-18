@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eeffc8;
+}
+.rating-container {
+  background-color: #fffbe6;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+  height: 350px;
+  justify-content: center;
+}
+h2 {
+  padding: 30px;
+}
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.stars span {
+  font-size: 30px;
+  color: lightgray;
+  transition: color 0.3s;
+}
+span:hover{
+  color: gold;
+}
+.rating-text {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}
+.header {
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  gap: 10px; /* Space between logo and text */
+  position: absolute; /* Position at the top-left */
+  top: 10px;
+  left: 10px;
+}
+
+.logo {
+  width: 60px; /* Adjust size */
+  height: 60px;
+}
+
+.Krishi {
+  font-size: 34px;
+  font-weight: bold;
+  color: #ff9100;
+  font-family: "Corinthia",cursive;
+  margin: 0; /* Remove default margin */
+}
+
+.Setu {
+  color: #00712D; /* Green color for 'Setu' */
+  font-family: "Galada",cursive;
+}

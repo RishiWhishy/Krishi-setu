@@ -1,0 +1,151 @@
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background-color: #eeffc8;
+  color: #4a4a4a;
+}
+.logo{
+  
+}
+.Krishi {
+  font-size: 66px;
+  color: #ff9100;
+  margin: 0;
+  font-family: "Corinthia",cursive;
+}
+
+.Setu {
+  font-size: 46px;
+  color: #00712D;
+  margin: 0;
+  font-family: "Galada",cursive;
+  font-weight: 200;
+}
+
+.container {
+
+  width: 100%;
+  max-width: 400px;
+  margin: 150px auto;
+  padding: 10px;
+  box-shadow: 2px 2px 2px rgba(144, 148, 92, 0.12);
+  border-radius: 20px;
+  background-color: #FFFBE6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.menu-icon span {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+main {
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 90%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.crop-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 15px;
+  text-align: center;
+}
+
+.crop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer; /* Makes it clear that it's clickable */
+}
+
+.crop-item {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.2s;
+}
+
+.crop-item:hover {
+  transform: scale(1.05); /* Slight zoom effect when hovering */
+}
+
+
+.crop-name {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+
+.header {
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  gap: 10px; /* Space between logo and text */
+  position: absolute; /* Position at the top-left */
+  top: 10px;
+  left: 10px;
+}
+
+.logo {
+  width: 60px; /* Adjust size */
+  height: 60px;
+}
+
+.Krishi {
+  font-size: 34px;
+  font-weight: bold;
+  color: #ff9100;
+  font-family: "Corinthia",cursive;
+  margin: 0; /* Remove default margin */
+}
+
+.Setu {
+  color: #00712D; /* Green color for 'Setu' */
+  font-family: "Galada",cursive;
+}
