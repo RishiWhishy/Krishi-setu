@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Rishi@2005',
+  password: 'dps123',
   database: 'sgt'
 });
 
@@ -34,7 +34,6 @@ db.connect(err => {
 // API Endpoint to Register User
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
-
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required' });
   }
@@ -88,6 +87,38 @@ app.post('/login', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
+});
+app.post('/list-crop', (req, res) => {
+  const { username, cropName, yieldAmount, price } = req.body;
+
+  if (!username || !cropName || !yieldAmount || !price) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  const sql = 'INSERT INTO listings (username, crop_name, yield, price) VALUES (?, ?, ?, ?)';
+  db.query(sql, [username, cropName, yieldAmount, price], (err, result) => {
+    if (err) {
+      console.error('Error inserting crop listing:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.status(201).json({ message: 'Crop listed successfully' });
+  });
+});
+app.post('/submit-rating', (req, res) => {
+  const { username, cropName, rating } = req.body;
+
+  if (!username || !cropName || !rating) {
+      return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const sql = 'INSERT INTO ratings (username, cropName, rating) VALUES (?, ?, ?)';
+  db.query(sql, [username, cropName, rating], (err, result) => {
+      if (err) {
+          console.error('Error inserting rating:', err);
+          return res.status(500).json({ error: 'Database error' });
+      }
+      res.status(201).json({ message: 'Rating submitted successfully' });
+  });
 });
 
 app.listen(PORT, () => {
