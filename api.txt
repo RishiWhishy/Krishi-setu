@@ -1,1 +1,5 @@
-https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi#api
+
+
+
+//this link- //
+https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi
