@@ -1,5 +1,5 @@
-https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi#api
+
 
 
 //this link- //
-https://www.data.gov.in/resource/district-wise-demographic-data-unorganised-workers-registered-eshram-previous-day
+https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi
