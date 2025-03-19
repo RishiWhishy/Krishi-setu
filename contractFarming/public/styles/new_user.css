@@ -50,16 +50,16 @@ body, html {
 .form__field {
   font-family: inherit;
   width: 100%;
+  font-weight: bold;
   border: none;
   border-radius: 12px;
   border: 2px solid #00712D;
   outline: 0;
   font-size: 10px;
-  color: black;
+  color: #000000; /* Set text color to black for darker text */
   padding: 10px;
   background:#f3f3f352;
 }
-
 .Sign-up-button {
   padding: 10px 20px;
   background: #00712D;

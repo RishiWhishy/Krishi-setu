@@ -33,15 +33,20 @@ db.connect(err => {
 
 // API Endpoint to Register User
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Username and password are required' });
+  const { username, password, role } = req.body;
+
+  if (!username || !password || !role) {
+    return res.status(400).json({ error: 'Username, password, and role are required' });
+  }
+
+  if (role !== 'Farmer' && role !== 'contractor') {
+    return res.status(400).json({ error: 'Invalid role. Role must be either Farmer or contractor.' });
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash password
-    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    db.query(sql, [username, hashedPassword], (err, result) => {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const sql = 'INSERT INTO users (username, password, role) VALUES (?, ?, ?)';
+    db.query(sql, [username, hashedPassword, role], (err) => {
       if (err) {
         console.error('Error inserting user:', err);
         return res.status(500).json({ error: 'Database error' });
@@ -80,14 +85,47 @@ app.post('/login', async (req, res) => {
       }
 
       // Generate JWT Token
-      const token = jwt.sign({ username: user.username }, secretKey, { expiresIn: '1h' });
+      const token = jwt.sign({ username: user.username, role: user.role }, secretKey, { expiresIn: '1h' });
 
-      res.status(200).json({ message: 'Login successful', token });
+      res.status(200).json({ message: 'Login successful', token, role: user.role });
     });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+// API Endpoint to List Crops
+app.get('/listings', (req, res) => {
+  const sql = 'SELECT * FROM listings';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error fetching listings:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.status(200).json(results);
+  });
+});
+
+// API Endpoint to Buy Crop
+app.post('/buy-crop/:id', (req, res) => {
+  const cropId = req.params.id;
+  const { token } = req.body;
+
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    const sql = 'DELETE FROM listings WHERE id = ?';
+    db.query(sql, [cropId], (err, result) => {
+      if (err) {
+        console.error('Error buying crop:', err);
+        return res.status(500).json({ error: 'Database error' });
+      }
+      res.status(200).json({ message: 'Crop bought successfully' });
+    });
+  } catch (error) {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+});
+
 app.post('/list-crop', (req, res) => {
   const { username, cropName, yieldAmount, price } = req.body;
 
@@ -104,20 +142,21 @@ app.post('/list-crop', (req, res) => {
     res.status(201).json({ message: 'Crop listed successfully' });
   });
 });
+
 app.post('/submit-rating', (req, res) => {
   const { username, cropName, rating } = req.body;
 
   if (!username || !cropName || !rating) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    return res.status(400).json({ error: 'Missing required fields' });
   }
 
   const sql = 'INSERT INTO ratings (username, cropName, rating) VALUES (?, ?, ?)';
   db.query(sql, [username, cropName, rating], (err, result) => {
-      if (err) {
-          console.error('Error inserting rating:', err);
-          return res.status(500).json({ error: 'Database error' });
-      }
-      res.status(201).json({ message: 'Rating submitted successfully' });
+    if (err) {
+      console.error('Error inserting rating:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.status(201).json({ message: 'Rating submitted successfully' });
   });
 });
 

@@ -1,0 +1,93 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #eeffc8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.Krishi {
+  font-size: 34px;
+  font-weight: bold;
+  color: #ff9100;
+  font-family: "Corinthia", cursive;
+}
+
+.Setu {
+  color: #00712D;
+  font-family: "Galada", cursive;
+}
+
+.container {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 750px;
+  background-color: #FFFBE6;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.075);
+}
+
+.crops-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.crop-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+}
+
+.crop-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.crop-details {
+  margin-top: 10px;
+}
+
+.crop-details h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #00712D;
+}
+
+.crop-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.crop-details button {
+  padding: 10px 20px;
+  background: #00712D;
+  color: #FFFBE6;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contractor sign-in</title>
-  <link rel="stylesheet" href="styles/farmer_page.css">
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contractor Sign-In</title>
+  <link rel="stylesheet" href="styles/farmer_page.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Corinthia&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Galada&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/57a5ab8d5e.js" crossorigin="anonymous"></script>
+  <script>
+    function setRole(role) {
+      localStorage.setItem('userRole', role);
+    }
+  </script>
 </head>
 <body>
   <div class="header">
-    <img src="images/logo.png" alt="Logo" class="logo">
-    <h1 class="Krishi">
-      Krishi<span class="Setu">Setu</span>
-    </h1>
+    <img src="images/logo.png" alt="Logo" class="logo" />
+    <h1 class="Krishi">Krishi<span class="Setu">Setu</span></h1>
   </div>
   <div class="container1" id="container11">
     <p class="Sign-in">Are you already a member?</p>
     <p class="Sign-in">If yes, then</p>
     
-    <button class="Sign-in-button"><a href="#container2"><a href="farmer_LoginPage.html">Sign-in as Contractor</a></a></button>
+    <button class="Sign-in-button" onclick="setRole('Contractor'); window.location.href='farmer_LoginPage.html';">
+      Sign-in as Contractor
+    </button>
     <p class="or-text">OR</p>
-    <button class="Sign-in-button2"><a href="new_user.html">Create Account</a></button>
-    
+    <button class="Sign-in-button2" onclick="setRole('Contractor'); window.location.href='new_user.html';">
+      Create Account
+    </button>
   </div>
 </body>
 </html>
