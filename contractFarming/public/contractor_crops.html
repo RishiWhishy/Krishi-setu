@@ -36,7 +36,7 @@
               <h3>${crop.crop_name}</h3>
               <p>Yield: ${crop.yield}</p>
               <p>Price: ${crop.price}</p>
-              <button onclick="buyCrop(${crop.id})">Buy</button>
+              <button onclick="buyCrop(${crop.id}, '${crop.crop_name}')">Buy</button>
             </div>
           </div>
         `).join('');
@@ -45,7 +45,7 @@
       }
     }
 
-    async function buyCrop(cropId) {
+    async function buyCrop(cropId, cropName) {
       try {
         const response = await fetch(`http://localhost:5000/buy-crop/${cropId}`, {
           method: 'POST',
@@ -54,6 +54,12 @@
         });
         const data = await response.json();
         alert(data.message || data.error);
+
+        if (response.ok) {
+          // Redirect to rating page with user and crop details
+          const params = new URLSearchParams({ user: localStorage.getItem('username'), crop: cropName });
+          window.location.href = `rating_after_listing.html?${params.toString()}`;
+        }
       } catch (error) {
         console.error('Error buying crop:', error);
       }

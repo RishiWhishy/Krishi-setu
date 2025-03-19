@@ -21,6 +21,14 @@
         <input type="text" id="username" class="form__field" placeholder="Enter Username" required />
         <br>
         <input type="password" id="password" class="form__field" placeholder="Enter Password" required />
+        <br>
+        <label for="role">Select Role:</label>
+        <select id="role" class="form__field" required>
+          <option value="">Select Role</option>
+          <option value="Farmer">Farmer</option>
+          <option value="contractor">Contractor</option>
+        </select>
+        <br>
         <button class="Sign-up-button" type="submit">Sign-Up</button>
       </form>
     </div>
@@ -30,10 +38,10 @@
 
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        const role = localStorage.getItem("userRole");
+        const role = document.getElementById("role").value;
 
         if (!role) {
-          alert("Error: Role not set. Please go back and select Farmer or Contractor.");
+          alert("Please select a role.");
           return;
         }
 

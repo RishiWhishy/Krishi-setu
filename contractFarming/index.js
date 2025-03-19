@@ -113,16 +113,66 @@ app.post('/buy-crop/:id', (req, res) => {
 
   try {
     const decoded = jwt.verify(token, secretKey);
-    const sql = 'DELETE FROM listings WHERE id = ?';
-    db.query(sql, [cropId], (err, result) => {
+
+    db.beginTransaction(err => {
       if (err) {
-        console.error('Error buying crop:', err);
-        return res.status(500).json({ error: 'Database error' });
+        console.error('Error starting transaction:', err);
+        return res.status(500).json({ error: 'Database error', details: err.message });
       }
-      res.status(200).json({ message: 'Crop bought successfully' });
+
+      // Check if crop exists in listings table
+      const checkSql = 'SELECT * FROM listings WHERE id = ?';
+      db.query(checkSql, [cropId], (checkErr, checkResult) => {
+        if (checkErr) {
+          console.error('Error checking crop:', checkErr);
+          return db.rollback(() => {
+            res.status(500).json({ error: 'Database error', details: checkErr.message });
+          });
+        }
+
+        if (checkResult.length === 0) {
+          return db.rollback(() => {
+            res.status(404).json({ error: 'Crop not found' });
+          });
+        }
+
+        // Insert transaction into transactions table
+        const transactionSql = 'INSERT INTO transactions (username, crop_id) VALUES (?, ?)';
+        db.query(transactionSql, [decoded.username, cropId], (transactionErr) => {
+          if (transactionErr) {
+            console.error('Error inserting transaction:', transactionErr);
+            return db.rollback(() => {
+              res.status(500).json({ error: 'Database erro74574574r', details: transactionErr.message });
+            });
+          }
+
+          // Delete crop from listings table
+          const deleteSql = 'DELETE FROM listings WHERE id = ?';
+          db.query(deleteSql, [cropId], (deleteErr, deleteResult) => {
+            if (deleteErr) {
+              console.error('Error deleting crop:', deleteErr);
+              return db.rollback(() => {
+                res.status(500).json({ error: 'Database error', details: deleteErr.message });
+              });
+            }
+
+            db.commit(commitErr => {
+              if (commitErr) {
+                console.error('Error committing transaction:', commitErr);
+                return db.rollback(() => {
+                  res.status(500).json({ error: 'Database error', details: commitErr.message });
+                });
+              }
+
+              res.status(200).json({ message: 'Crop bought successfully' });
+            });
+          });
+        });
+      });
     });
   } catch (error) {
-    res.status(401).json({ error: 'Unauthorized' });
+    console.error('Error:', error);
+    res.status(401).json({ error: 'Unauthorized', details: error.message });
   }
 });
 
@@ -137,7 +187,7 @@ app.post('/list-crop', (req, res) => {
   db.query(sql, [username, cropName, yieldAmount, price], (err, result) => {
     if (err) {
       console.error('Error inserting crop listing:', err);
-      return res.status(500).json({ error: 'Database error' });
+      return res.status(500).json({ error: 'Database error', details: err.message });
     }
     res.status(201).json({ message: 'Crop listed successfully' });
   });
@@ -154,7 +204,7 @@ app.post('/submit-rating', (req, res) => {
   db.query(sql, [username, cropName, rating], (err, result) => {
     if (err) {
       console.error('Error inserting rating:', err);
-      return res.status(500).json({ error: 'Database error' });
+      return res.status(500).json({ error: 'Database error', details: err.message });
     }
     res.status(201).json({ message: 'Rating submitted successfully' });
   });
